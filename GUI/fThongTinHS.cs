@@ -53,7 +53,7 @@ namespace GUI
             }
             catch (SqlException)
             {
-                MessageBox.Show("Không thể kết nối được!");
+                MessageBox.Show("Kết nối không thành công!");
                 return;
             }
             cbLop.DataSource = dt;

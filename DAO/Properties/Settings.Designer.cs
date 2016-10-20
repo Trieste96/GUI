@@ -49,7 +49,7 @@ namespace DAO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IDEAPAD-100IBD")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".")]
         public string server {
             get {
                 return ((string)(this["server"]));

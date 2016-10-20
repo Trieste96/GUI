@@ -31,12 +31,13 @@ namespace BUS
             }
             return dt;
         }
-        public DataTable loadDSHS()
+        public DataTable loadDSSVtheoLop(object MaLop)
         {
+
             DataTable dt = new DataTable();
             try
             {
-                dt = dao.loadDSHS();
+                dt = dao.loadDSSVtheoLop(Convert.ToInt16(MaLop));
             }
             catch(SqlException)
             {
@@ -44,29 +45,6 @@ namespace BUS
                 throw;
             }
             return dt;
-        }
-        public void themSV(SinhVienDTO sv)
-        {
-            dao.themSV(sv);
-        }
-
-        public void suaSV(SinhVienDTO sv)
-        {
-            dao.suaSV(sv);
-        }
-        public void xoaSV(SinhVienDTO sv)
-        {
-            dao.xoaSV(sv);
-        }
-        public bool validateName(string name)
-        {
-            string pattern = @"^(\p{Lu}[\p{Ll}]+\s)+\p{Lu}[\p{Ll}]+$";
-            return Regex.IsMatch(name.Trim(), pattern);
-        }
-        public bool validatePhoneNumber(string number)
-        {
-            string pattern = @"^\d{8,15}$";
-            return Regex.IsMatch(number, pattern);
         }
     }
 }

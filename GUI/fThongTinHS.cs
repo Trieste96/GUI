@@ -16,16 +16,18 @@ namespace GUI
 {
     public partial class fThongTinHS : Form
     {
-        private LopHocBUS bus;
+        private LopHocBUS lop_hoc_bus;
+        private HocSinhBUS hs_bus;
         public fThongTinHS()
         {
             InitializeComponent();
-            bus = new LopHocBUS();
+            lop_hoc_bus = new LopHocBUS();
+            hs_bus = new HocSinhBUS();
         }
        
         private void btnThemHS_Click(object sender, EventArgs e)
         {
-            if (!(bus.validateName(txtHoTen.Text) && bus.validatePhoneNumber(txtSoDT.Text)))
+            if (!(hs_bus.validateName(txtHoTen.Text) && hs_bus.validatePhoneNumber(txtSoDT.Text)))
             {
                 MessageBox.Show("Xin hãy điền lại thông tin hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -36,7 +38,7 @@ namespace GUI
                 {
                     SinhVienDTO sv = new SinhVienDTO(0, txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                                                         Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    bus.themSV(sv);
+                    hs_bus.themSV(sv);
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
 
@@ -49,7 +51,7 @@ namespace GUI
             DataTable dt = new DataTable();
             try
             {
-                dt = bus.load_tenLop();
+                dt = lop_hoc_bus.load_tenLop();
             }
             catch (SqlException)
             {
@@ -68,7 +70,7 @@ namespace GUI
             DataTable dt = new DataTable("DSLop");
             try
             {
-                dt = bus.loadDSHS();
+                dt = lop_hoc_bus.loadDSSVtheoLop(cbLop.SelectedValue.ToString());
             }
             catch (SqlException)
             {
@@ -82,8 +84,11 @@ namespace GUI
             tableSV.Columns[3].HeaderText = "Số điện thoại";
             tableSV.Columns[4].HeaderText = "Ngày sinh";
             tableSV.Columns[5].HeaderText = "Lớp";
-            for (int i = 0; i < tableSV.ColumnCount; i++)
-                tableSV.AutoResizeColumn(i);
+
+            tableSV.AutoResizeColumn(0);
+            tableSV.AutoResizeColumn(3);
+            tableSV.AutoResizeColumn(4);
+            tableSV.AutoResizeColumn(5);
             tableSV.ReadOnly = true;
         }
 
@@ -126,7 +131,7 @@ namespace GUI
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if ( !(bus.validateName(txtHoTen.Text) && bus.validatePhoneNumber(txtSoDT.Text)) )
+            if ( !(hs_bus.validateName(txtHoTen.Text) && hs_bus.validatePhoneNumber(txtSoDT.Text)) )
             {
                 MessageBox.Show("Xin hãy điền lại thông tin hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -138,7 +143,7 @@ namespace GUI
                 {
                     SinhVienDTO sv = new SinhVienDTO(Convert.ToInt32(txtMSSV.Text), txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                             Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    bus.suaSV(sv);
+                    hs_bus.suaSV(sv);
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
             } 
@@ -151,8 +156,7 @@ namespace GUI
             if (result == DialogResult.Yes && txtMSSV.Text.Equals("") == false)
             {
                 SinhVienDTO sv = new SinhVienDTO(Convert.ToInt32(txtMSSV.Text), null, null, null, null, 0);
-                LopHocBUS bus = new LopHocBUS();
-                bus.xoaSV(sv);
+                hs_bus.xoaSV(sv);
 
                 txtMSSV.Clear();
                 txtHoTen.Clear();
@@ -171,7 +175,7 @@ namespace GUI
 
         private void txtHoTen_Leave(object sender, EventArgs e)
         {
-            if (bus.validateName(txtHoTen.Text) == false)
+            if (hs_bus.validateName(txtHoTen.Text) == false)
             {
                 epHoTen.SetError(txtHoTen, "Họ tên không hợp lệ");
             }
@@ -181,12 +185,17 @@ namespace GUI
 
         private void txtSoDT_Leave(object sender, EventArgs e)
         {
-            if (bus.validatePhoneNumber(txtSoDT.Text) == false)
+            if (hs_bus.validatePhoneNumber(txtSoDT.Text) == false)
             {
                 epSoDT.SetError(txtSoDT, "Số điện thoại không hợp lệ (Số điện thoại hợp lệ gồm 8-15 ký tự số).");
             }
             else
                 epSoDT.Clear();
+        }
+
+        private void cbLop_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            btnTaiLai_Click(new object(), new EventArgs());
         }
     }
 }

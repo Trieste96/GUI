@@ -183,7 +183,7 @@ namespace GUI
         {
             if (bus.validatePhoneNumber(txtSoDT.Text) == false)
             {
-                epSoDT.SetError(txtSoDT, "Số điện thoại không hợp lệ (Số điện thoại hợp lệ gồm 8-15 ký tự số)!");
+                epSoDT.SetError(txtSoDT, "Số điện thoại không hợp lệ (Số điện thoại hợp lệ gồm 8-15 ký tự số).");
             }
             else
                 epSoDT.Clear();

@@ -29,6 +29,7 @@ namespace DAO
             cmd.Parameters["@MaLop"].Value = sv.maLop;
             connection.Open();
             cmd.ExecuteNonQuery();
+            connection.Close();
         }
         public void suaSV(SinhVienDTO sv)
         {
@@ -50,6 +51,7 @@ namespace DAO
             cmd.Parameters["@MaLop"].Value = sv.maLop;
             connection.Open();
             cmd.ExecuteNonQuery();
+            connection.Close();
         }
         public void xoaSV(SinhVienDTO sv)
         {

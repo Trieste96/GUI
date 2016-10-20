@@ -70,7 +70,7 @@ namespace GUI
             DataTable dt = new DataTable("DSLop");
             try
             {
-                dt = lop_hoc_bus.loadDSSVtheoLop(cbLop.SelectedValue.ToString());
+                dt = lop_hoc_bus.loadDSSVtheoLop(cbLop.SelectedValue);
             }
             catch (SqlException)
             {
@@ -196,6 +196,11 @@ namespace GUI
         private void cbLop_SelectionChangeCommitted(object sender, EventArgs e)
         {
             btnTaiLai_Click(new object(), new EventArgs());
+            txtMSSV.Clear();
+            txtHoTen.Clear();
+            txtDiaChi.Clear();
+            txtSoDT.Clear();
+            
         }
     }
 }

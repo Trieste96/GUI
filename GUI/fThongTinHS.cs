@@ -16,7 +16,7 @@ namespace GUI
 {
     public partial class fThongTinHS : Form
     {
-        LopHocBUS bus;
+        private LopHocBUS bus;
         public fThongTinHS()
         {
             InitializeComponent();

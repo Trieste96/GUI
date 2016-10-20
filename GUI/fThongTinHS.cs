@@ -173,7 +173,7 @@ namespace GUI
         {
             if (bus.validateName(txtHoTen.Text) == false)
             {
-                epHoTen.SetError(txtHoTen, "Họ tên không hợp lệ!");
+                epHoTen.SetError(txtHoTen, "Họ tên không hợp lệ");
             }
             else
                 epHoTen.Clear();

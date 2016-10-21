@@ -14,16 +14,38 @@ namespace BUS
         private HocSinhDAO dao = new HocSinhDAO();
         public void themHS(HocSinhDTO hs)
         {
-            dao.themHS(hs);
+            try
+            {
+                dao.themHS(hs);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void suaHS(HocSinhDTO hs)
         {
-            dao.suaHS(hs);
+            try
+            {
+                dao.suaHS(hs);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public void xoaHS(HocSinhDTO hs)
         {
-            dao.suaHS(hs);
+            try
+            {
+                dao.xoaHS(hs);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public bool validateName(string name)
         {

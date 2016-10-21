@@ -12,7 +12,7 @@
       <Value Profile="(Default)">.</Value>
     </Setting>
     <Setting Name="database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">QLSV</Value>
+      <Value Profile="(Default)">QLHS</Value>
     </Setting>
   </Settings>
 </SettingsFile>

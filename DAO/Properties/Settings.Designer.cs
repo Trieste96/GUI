@@ -61,7 +61,7 @@ namespace DAO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("QLSV")]
+        [global::System.Configuration.DefaultSettingValueAttribute("QLHS")]
         public string database {
             get {
                 return ((string)(this["database"]));

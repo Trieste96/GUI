@@ -25,8 +25,17 @@ namespace GUI
             hs_bus = new HocSinhBUS();
         }
        
+        private void ClearBox()
+        {
+            txtMSHS.Clear();
+            txtHoTen.Clear();
+            txtDiaChi.Clear();
+            txtSoDT.Clear();
+            dtpNgaySinh.Value = DateTime.Today;
+        }
         private void btnThemHS_Click(object sender, EventArgs e)
         {
+            txtHoTen.Text = txtHoTen.Text.Trim();
             if (!(hs_bus.validateName(txtHoTen.Text) && hs_bus.validatePhoneNumber(txtSoDT.Text)))
             {
                 MessageBox.Show("Xin hãy điền lại thông tin hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -38,7 +47,18 @@ namespace GUI
                 {
                     HocSinhDTO hs = new HocSinhDTO(0, txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                                                         Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    hs_bus.themHS(hs);
+                    try
+                    {
+                        hs_bus.themHS(hs);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Thêm thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    };
+                    MessageBox.Show("Thêm thành công!", "Xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    ClearBox();
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
 
@@ -86,10 +106,8 @@ namespace GUI
             tableSV.Columns[4].HeaderText = "Ngày sinh";
             tableSV.Columns[5].HeaderText = "Lớp";
 
-            tableSV.AutoResizeColumn(0);
-            tableSV.AutoResizeColumn(3);
-            tableSV.AutoResizeColumn(4);
-            tableSV.AutoResizeColumn(5);
+            for(int i=0; i<tableSV.ColumnCount; i++)
+                tableSV.AutoResizeColumn(i);
             tableSV.ReadOnly = true;
         }
 
@@ -132,6 +150,7 @@ namespace GUI
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            txtHoTen.Text = txtHoTen.Text.Trim();
             if ( !(hs_bus.validateName(txtHoTen.Text) && hs_bus.validatePhoneNumber(txtSoDT.Text)) )
             {
                 MessageBox.Show("Xin hãy điền lại thông tin hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -144,7 +163,17 @@ namespace GUI
                 {
                     HocSinhDTO hs = new HocSinhDTO(Convert.ToInt32(txtMSHS.Text), txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                             Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    hs_bus.suaHS(hs);
+                    try
+                    {
+                        hs_bus.suaHS(hs);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Sửa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    };
+                    MessageBox.Show("Sửa thành công!", "Xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    ClearBox();
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
             } 
@@ -157,14 +186,18 @@ namespace GUI
             if (result == DialogResult.Yes && txtMSHS.Text.Equals("") == false)
             {
                 HocSinhDTO hs = new HocSinhDTO(Convert.ToInt32(txtMSHS.Text), null, null, null, null, 0);
-                hs_bus.xoaHS(hs);
+                try
+                {
+                    hs_bus.xoaHS(hs);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                };
+                MessageBox.Show("Xoá thành công!", "Xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                txtMSHS.Clear();
-                txtHoTen.Clear();
-                txtDiaChi.Clear();
-                txtSoDT.Clear();
-                cbLop.SelectedIndex = 0;
-                dtpNgaySinh.Value = DateTime.Today;
+                ClearBox();
                 btnTaiLai_Click(new Object(), new EventArgs());
             }
         }

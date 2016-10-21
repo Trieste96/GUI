@@ -198,7 +198,7 @@
             this.tableSV.Location = new System.Drawing.Point(515, 73);
             this.tableSV.Name = "tableSV";
             this.tableSV.ReadOnly = true;
-            this.tableSV.Size = new System.Drawing.Size(532, 223);
+            this.tableSV.Size = new System.Drawing.Size(545, 223);
             this.tableSV.TabIndex = 13;
             this.tableSV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tableSV_CellMouseClick);
             this.tableSV.Leave += new System.EventHandler(this.tableSV_Leave);

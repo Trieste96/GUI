@@ -25,7 +25,7 @@ namespace DAO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        [global::System.Configuration.DefaultSettingValueAttribute("sapwd")]
         public string password {
             get {
                 return ((string)(this["password"]));

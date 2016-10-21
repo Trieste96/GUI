@@ -34,10 +34,10 @@ namespace DAO
         {
             return executeSP("sp_load_lop");
         }
-        public DataTable loadDSSVtheoLop(int maLop)
+        public DataTable loadDSHStheoLop(int maLop)
         {
             SqlConnection conn = DBConnection.openConnection();
-            SqlCommand cmd = new SqlCommand("sp_DSSV_theo_lop", conn);
+            SqlCommand cmd = new SqlCommand("sp_DSHS_theo_lop", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@MaLop", SqlDbType.Int);
             cmd.Parameters["@MaLop"].Value = maLop;

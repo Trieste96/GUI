@@ -45,7 +45,7 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.tableSV = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtMSSV = new System.Windows.Forms.TextBox();
+            this.txtMSHS = new System.Windows.Forms.TextBox();
             this.lblMSSV = new System.Windows.Forms.Label();
             this.btnTaiLai = new System.Windows.Forms.Button();
             this.epHoTen = new System.Windows.Forms.ErrorProvider(this.components);
@@ -205,7 +205,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtMSSV);
+            this.panel1.Controls.Add(this.txtMSHS);
             this.panel1.Controls.Add(this.lblMSSV);
             this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.btnXoa);
@@ -223,14 +223,14 @@
             this.panel1.Size = new System.Drawing.Size(476, 310);
             this.panel1.TabIndex = 14;
             // 
-            // txtMSSV
+            // txtMSHS
             // 
-            this.txtMSSV.Location = new System.Drawing.Point(152, 35);
-            this.txtMSSV.Name = "txtMSSV";
-            this.txtMSSV.ReadOnly = true;
-            this.txtMSSV.Size = new System.Drawing.Size(274, 20);
-            this.txtMSSV.TabIndex = 14;
-            this.txtMSSV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMSSV_KeyPress);
+            this.txtMSHS.Location = new System.Drawing.Point(152, 35);
+            this.txtMSHS.Name = "txtMSHS";
+            this.txtMSHS.ReadOnly = true;
+            this.txtMSHS.Size = new System.Drawing.Size(274, 20);
+            this.txtMSHS.TabIndex = 14;
+            this.txtMSHS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMSSV_KeyPress);
             // 
             // lblMSSV
             // 
@@ -238,9 +238,9 @@
             this.lblMSSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMSSV.Location = new System.Drawing.Point(49, 35);
             this.lblMSSV.Name = "lblMSSV";
-            this.lblMSSV.Size = new System.Drawing.Size(82, 20);
+            this.lblMSSV.Size = new System.Drawing.Size(83, 20);
             this.lblMSSV.TabIndex = 13;
-            this.lblMSSV.Text = "Mã số SV:";
+            this.lblMSSV.Text = "Mã số HS:";
             // 
             // btnTaiLai
             // 
@@ -307,7 +307,7 @@
         private System.Windows.Forms.DataGridView tableSV;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnTaiLai;
-        private System.Windows.Forms.TextBox txtMSSV;
+        private System.Windows.Forms.TextBox txtMSHS;
         private System.Windows.Forms.Label lblMSSV;
         private System.Windows.Forms.ErrorProvider epHoTen;
         private System.Windows.Forms.ErrorProvider epSoDT;

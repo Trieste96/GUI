@@ -12,18 +12,18 @@ namespace BUS
     public class HocSinhBUS
     {
         private HocSinhDAO dao = new HocSinhDAO();
-        public void themSV(SinhVienDTO sv)
+        public void themHS(HocSinhDTO hs)
         {
-            dao.themSV(sv);
+            dao.themHS(hs);
         }
 
-        public void suaSV(SinhVienDTO sv)
+        public void suaHS(HocSinhDTO hs)
         {
-            dao.suaSV(sv);
+            dao.suaHS(hs);
         }
-        public void xoaSV(SinhVienDTO sv)
+        public void xoaHS(HocSinhDTO hs)
         {
-            dao.xoaSV(sv);
+            dao.suaHS(hs);
         }
         public bool validateName(string name)
         {

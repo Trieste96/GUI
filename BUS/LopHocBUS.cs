@@ -31,13 +31,13 @@ namespace BUS
             }
             return dt;
         }
-        public DataTable loadDSSVtheoLop(object MaLop)
+        public DataTable loadDSHStheoLop(object MaLop)
         {
 
             DataTable dt = new DataTable();
             try
             {
-                dt = dao.loadDSSVtheoLop(Convert.ToInt16(MaLop));
+                dt = dao.loadDSHStheoLop(Convert.ToInt16(MaLop));
             }
             catch(SqlException)
             {

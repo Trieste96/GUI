@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class SinhVienDTO
+    public class HocSinhDTO
     {
-        public SinhVienDTO(int masv, string ten, string diachi, string sodt, string ngaysinh, int malop)
+        public HocSinhDTO(int mahs, string ten, string diachi, string sodt, string ngaysinh, int malop)
         {
-            maSV    = masv;
-            tenSV   = ten;
+            maHS    = mahs;
+            tenHS   = ten;
             diaChi  = diachi;
             soDT    = sodt;
             ngaySinh= ngaysinh;
             maLop   = malop;
         }
-        public int maSV { get; set; }
-        public string tenSV { get; set; }
+        public int maHS { get; set; }
+        public string tenHS { get; set; }
         public string diaChi { get; set; }
         public string soDT { get; set; }
         public string ngaySinh { get; set; }

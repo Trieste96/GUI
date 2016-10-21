@@ -33,12 +33,12 @@ namespace GUI
             }
             else
             {
-                if(MessageBox.Show("Bạn có muốn thêm thông tin sinh viên này?","Xác nhận",MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                if(MessageBox.Show("Bạn có muốn thêm thông tin học sinh này?","Xác nhận",MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                     == DialogResult.OK)
                 {
-                    SinhVienDTO sv = new SinhVienDTO(0, txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
+                    HocSinhDTO hs = new HocSinhDTO(0, txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                                                         Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    hs_bus.themSV(sv);
+                    hs_bus.themHS(hs);
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
 
@@ -71,7 +71,7 @@ namespace GUI
             DataTable dt = new DataTable("DSLop");
             try
             {
-                dt = lop_hoc_bus.loadDSSVtheoLop(cbLop.SelectedValue);
+                dt = lop_hoc_bus.loadDSHStheoLop(cbLop.SelectedValue);
             }
             catch (SqlException)
             {
@@ -79,7 +79,7 @@ namespace GUI
                 return;
             }
             tableSV.DataSource = dt;
-            tableSV.Columns[0].HeaderText = "Mã SV";
+            tableSV.Columns[0].HeaderText = "Mã số HS";
             tableSV.Columns[1].HeaderText = "Họ tên";
             tableSV.Columns[2].HeaderText = "Địa chỉ";
             tableSV.Columns[3].HeaderText = "Số điện thoại";
@@ -96,7 +96,7 @@ namespace GUI
         private void tableSV_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //MessageBox.Show("Dòng hiện tại: " + tableSV.CurrentRow.Index);
-            txtMSSV.Text    = tableSV.CurrentRow.Cells[0].FormattedValue.ToString();
+            txtMSHS.Text    = tableSV.CurrentRow.Cells[0].FormattedValue.ToString();
             txtHoTen.Text   = tableSV.CurrentRow.Cells[1].FormattedValue.ToString();
             txtDiaChi.Text  = tableSV.CurrentRow.Cells[2].FormattedValue.ToString();
             txtSoDT.Text    = tableSV.CurrentRow.Cells[3].FormattedValue.ToString();
@@ -138,13 +138,13 @@ namespace GUI
             }
             else
             {
-                DialogResult result = MessageBox.Show(String.Format("Bạn có chắc chắn làm mình muốn sửa đổi thông tin của SV mã {0}?", txtMSSV.Text), "Xác nhận",
+                DialogResult result = MessageBox.Show(String.Format("Bạn có muốn sửa đổi thông tin của hoc sinh mã {0}?", txtMSHS.Text), "Xác nhận",
                 MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes && txtMSSV.Text.Equals("") == false)
+                if (result == DialogResult.Yes && txtMSHS.Text.Equals("") == false)
                 {
-                    SinhVienDTO sv = new SinhVienDTO(Convert.ToInt32(txtMSSV.Text), txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
+                    HocSinhDTO hs = new HocSinhDTO(Convert.ToInt32(txtMSHS.Text), txtHoTen.Text, txtDiaChi.Text, txtSoDT.Text, dtpNgaySinh.Value.ToString("dd/MM/yyyy"),
                             Convert.ToInt32(cbLop.SelectedValue.ToString()));
-                    hs_bus.suaSV(sv);
+                    hs_bus.suaHS(hs);
                     btnTaiLai_Click(new Object(), new EventArgs());
                 }
             } 
@@ -152,14 +152,14 @@ namespace GUI
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(String.Format("Bạn có chắc chắn muốn xoá SV mã {0} ra khỏi danh sách?", txtMSSV.Text), "Xác nhận", 
+            DialogResult result = MessageBox.Show(String.Format("Bạn có chắc chắn muốn xoá SV mã {0} ra khỏi danh sách?", txtMSHS.Text), "Xác nhận", 
                 MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes && txtMSSV.Text.Equals("") == false)
+            if (result == DialogResult.Yes && txtMSHS.Text.Equals("") == false)
             {
-                SinhVienDTO sv = new SinhVienDTO(Convert.ToInt32(txtMSSV.Text), null, null, null, null, 0);
-                hs_bus.xoaSV(sv);
+                HocSinhDTO hs = new HocSinhDTO(Convert.ToInt32(txtMSHS.Text), null, null, null, null, 0);
+                hs_bus.xoaHS(hs);
 
-                txtMSSV.Clear();
+                txtMSHS.Clear();
                 txtHoTen.Clear();
                 txtDiaChi.Clear();
                 txtSoDT.Clear();
@@ -197,7 +197,7 @@ namespace GUI
         private void cbLop_SelectionChangeCommitted(object sender, EventArgs e)
         {
             btnTaiLai_Click(new object(), new EventArgs());
-            txtMSSV.Clear();
+            txtMSHS.Clear();
             txtHoTen.Clear();
             txtDiaChi.Clear();
             txtSoDT.Clear();

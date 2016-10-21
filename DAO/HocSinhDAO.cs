@@ -11,10 +11,10 @@ namespace DAO
 {
     public class HocSinhDAO
     {
-        public void themSV(SinhVienDTO sv)
+        public void themHS(HocSinhDTO hs)
         {
             SqlConnection connection = DBConnection.openConnection();
-            SqlCommand cmd = new SqlCommand("sp_themSV", connection);
+            SqlCommand cmd = new SqlCommand("sp_themHS", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar);
             cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
@@ -22,44 +22,44 @@ namespace DAO
             cmd.Parameters.Add("@NgaySinh", SqlDbType.DateTime);
             cmd.Parameters.Add("@MaLop", SqlDbType.Int);
 
-            cmd.Parameters["@HoTen"].Value = sv.tenSV;
-            cmd.Parameters["@DiaChi"].Value = sv.diaChi;
-            cmd.Parameters["@SoDT"].Value = sv.soDT;
-            cmd.Parameters["@NgaySinh"].Value = sv.ngaySinh;
-            cmd.Parameters["@MaLop"].Value = sv.maLop;
+            cmd.Parameters["@HoTen"].Value = hs.tenHS;
+            cmd.Parameters["@DiaChi"].Value = hs.diaChi;
+            cmd.Parameters["@SoDT"].Value = hs.soDT;
+            cmd.Parameters["@NgaySinh"].Value = hs.ngaySinh;
+            cmd.Parameters["@MaLop"].Value = hs.maLop;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-        public void suaSV(SinhVienDTO sv)
+        public void suaHS(HocSinhDTO hs)
         {
             SqlConnection connection = DBConnection.openConnection();
             SqlCommand cmd = new SqlCommand("sp_suaSV", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@MaSV", SqlDbType.Int);
+            cmd.Parameters.Add("@MaHS", SqlDbType.Int);
             cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar);
             cmd.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
             cmd.Parameters.Add("@SoDT", SqlDbType.VarChar);
             cmd.Parameters.Add("@NgaySinh", SqlDbType.DateTime);
             cmd.Parameters.Add("@MaLop", SqlDbType.Int);
 
-            cmd.Parameters["@MaSV"].Value = sv.maSV;
-            cmd.Parameters["@HoTen"].Value = sv.tenSV;
-            cmd.Parameters["@DiaChi"].Value = sv.diaChi;
-            cmd.Parameters["@SoDT"].Value = sv.soDT;
-            cmd.Parameters["@NgaySinh"].Value = sv.ngaySinh;
-            cmd.Parameters["@MaLop"].Value = sv.maLop;
+            cmd.Parameters["@MaHS"].Value = hs.maHS;
+            cmd.Parameters["@HoTen"].Value = hs.tenHS;
+            cmd.Parameters["@DiaChi"].Value = hs.diaChi;
+            cmd.Parameters["@SoDT"].Value = hs.soDT;
+            cmd.Parameters["@NgaySinh"].Value = hs.ngaySinh;
+            cmd.Parameters["@MaLop"].Value = hs.maLop;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-        public void xoaSV(SinhVienDTO sv)
+        public void xoaHS(HocSinhDTO hs)
         {
             SqlConnection connection = DBConnection.openConnection();
             SqlCommand cmd = new SqlCommand("sp_xoaSV", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@MaSV", SqlDbType.Int);
-            cmd.Parameters["@MaSV"].Value = sv.maSV;
+            cmd.Parameters["@MaSV"].Value = hs.maHS;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();

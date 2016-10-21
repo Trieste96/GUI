@@ -56,6 +56,7 @@ namespace GUI
             catch (SqlException)
             {
                 MessageBox.Show("Kết nối không thành công!");
+                Application.Exit();
                 return;
             }
             cbLop.DataSource = dt;
